@@ -1,0 +1,14 @@
+{
+  "name": "case-record-system",
+  "private": true,
+  "dependencies": {
+    "jquery": "1.x",
+    "bootstrap": "3.x",
+    "fontawesome": "x",
+    "underscore": "x",
+    "angular": "1.3.x",
+    "angular-resource": "1.3.x",
+    "moment": "2.x",
+    "bootstrap3-dialog": "x"
+  }
+}

@@ -1,0 +1,5 @@
+/Vendor/
+/app/tmp/
+/app/webroot/components/
+database.php
+reform_app_config.php
