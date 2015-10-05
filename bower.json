@@ -8,6 +8,7 @@
     "underscore": "x",
     "angular": "1.3.x",
     "angular-resource": "1.3.x",
+    "angular-sanitize": "1.3.x",
     "moment": "2.x",
     "bootstrap3-dialog": "x"
   }

@@ -5,7 +5,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller
 {
 
-  public $components = array('CaseRecordSystem', 'Session');
+  public $components = array('CaseRecordSystem', 'Session', 'Flash');
 
   // Check User logged
   public function beforeFilter()

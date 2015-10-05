@@ -7,8 +7,8 @@ var CaseRecordSystemService = angular.module('CaseRecordSystemService', ['ngReso
 
 CaseRecordSystemService.factory('CaseRecordSystemService', ['$resource',
     function($resource){
-      return $resource(webroot + '/:controller/:action.json', {}, {
-        reform_products: {method:'POST', params: {plugin: "platinmarket", controller: "products", action: "index"}, isArray: true}
+      return $resource(webroot + ':controller/:action.json', {}, {
+        get_cases: {method:'POST', params: {controller: "cases", action: "index"}, isArray: false}
       });
     }
 ]);

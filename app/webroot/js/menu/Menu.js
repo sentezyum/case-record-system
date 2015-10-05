@@ -12,11 +12,18 @@ CaseRecordSystem.directive('menu', ['$document', function($document) {
 
       $scope.targetLink = null;
 
+
       $scope.$on('link-set', function(e, href){
         $scope.targetLink = href;
         if (!$scope.isActive()) return;
-        $scope.element.addClass('active');
+        $scope.setActive();
       });
+
+      $scope.setActive = function()
+      {
+        $scope.element.addClass('active');
+        $scope.element.parent().closest('li').addClass('active');
+      }
 
       // Check if page is active
       $scope.isActive = function()

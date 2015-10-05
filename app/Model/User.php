@@ -70,9 +70,10 @@ class User extends AppModel
   public function validatePassword($data = array())
   {
     $password = Hash::get($this->data, 'User.password');
+    $mail = Hash::get($this->data, 'User.mail');
     $options = array();
     $options['recursive'] = 0;
-    $options['conditions'] = array('User.password' => Security::hash($password, 'md5'));
+    $options['conditions'] = array('User.mail' => $mail, 'User.password' => Security::hash($password, 'md5'));
     return !empty($this->find('first', $options));
   }
 

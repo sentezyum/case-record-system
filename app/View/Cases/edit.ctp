@@ -1,5 +1,6 @@
 <div class="container">
   <?php echo $this->Form->create("CaseRecord", array('inputDefaults' => array('label' => false, 'div' => false, 'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-block'))))); ?>
+    <?php echo $this->Form->input('CaseRecord.id', array('type' => 'hidden')); ?>
     <div class="row">
       <div class="col-sm-4">
         <div class="form-group">

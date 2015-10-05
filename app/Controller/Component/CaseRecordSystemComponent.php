@@ -37,7 +37,7 @@ class CaseRecordSystemComponent extends Component
   }
 
   // Delete logged user
-  public function deleteLoggedUser($user)
+  public function deleteLoggedUser()
   {
     return $this->Session->delete('Logged');
   }

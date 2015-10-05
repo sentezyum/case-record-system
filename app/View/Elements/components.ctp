@@ -15,6 +15,7 @@ echo $this->Bower->component('js', '/components/moment/min/moment-with-locales.m
 // angular lib
 echo $this->Bower->component('js', '/components/angular/angular.min.js');
 echo $this->Bower->component('js', '/components/angular-resource/angular-resource.min.js');
+echo $this->Bower->component('js', '/components/angular-sanitize/angular-sanitize.min.js');
 
 // Angular app
 echo $this->Html->script('angular_app.js');

@@ -2,7 +2,8 @@
 
 /* App Module */
 var CaseRecordSystem = angular.module('CaseRecordSystem', [
-  'CaseRecordSystemService'
+  'CaseRecordSystemService',
+  'ngSanitize'
 ]);
 
 moment.locale('tr');
