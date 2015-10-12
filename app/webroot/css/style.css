@@ -85,3 +85,28 @@ body.login{
     font-size: 90px;
     margin-bottom: 20px;
 }
+
+.pagination li.disabled
+{
+  opacity: .5;
+}
+
+table div.table-header
+{
+  cursor: pointer;
+}
+
+table div.table-header i
+{
+  vertical-align: -3px;
+  text-indent: 5px;
+}
+
+table div.table-header i.fa-sort-desc
+{
+  vertical-align: 3px;
+}
+
+.highlight {
+  font-weight: bold;
+}

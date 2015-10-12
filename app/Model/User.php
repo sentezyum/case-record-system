@@ -37,12 +37,36 @@ class User extends AppModel
     )
   );
 
+  // Login Validate
+  public $validate = array(
+    'mail' => array(
+      'notBlank' => array(
+        'rule' => 'notBlank',
+        'require' => true,
+        'message' => 'Boş bırakılamaz'
+      )
+    ),
+    'password' => array(
+      'notBlank' => array(
+        'rule' => 'notBlank',
+        'require' => true,
+        'message' => 'Boş bırakılamaz'
+      )
+    )
+  );
+
   // Authorize from array
   public function authorize($auth)
   {
     $this->set($auth);
+    $oldValidate = $this->validate;
     $this->validate = $this->login_validate;
-    if (!$this->validates()) return false;
+    if (!$this->validates())
+    {
+      $this->validate = $oldValidate;
+      return false;
+    }
+    $this->validate = $oldValidate;
     return $this->getUserFromAuth($auth);
   }
 
@@ -54,6 +78,15 @@ class User extends AppModel
     $options['recursive'] = 0;
     $options['conditions'] = array('User.mail' => $mail, 'User.password' => Security::hash($password, 'md5'));
     return $this->find('first', $options);
+  }
+
+  public function changePassword($user, $newPassword)
+  {
+    $user['User']['password'] = $newPassword;
+    $this->set($user);
+    if ($this->validates())
+      return $this->save(array('User' => array('id' => Hash::get($user, 'User.id'), 'password' => Security::hash($newPassword, 'md5'))));
+    return false;
   }
 
   // Mail Auth Validation

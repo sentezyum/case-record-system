@@ -6,7 +6,7 @@ App::uses('Hash', 'Utility');
 class CaseRecordSystemComponent extends Component
 {
   // Load Core Components
-  public $components = array('Session');
+  public $components = array('Session', 'RequestHandler');
 
   // Holds Current Controller
   private $Controller = null;
@@ -77,7 +77,11 @@ class CaseRecordSystemComponent extends Component
     if ($this->Controller->name == 'CakeError') return;
 
     // Redirect login page if not loggin
-    if (!$this->isPage('user_login') && !$this->isPage('user_logout') && !$this->userLogged()) $this->redirect('user_login');
+    if (!$this->isPage('user_login') && !$this->isPage('user_logout') && !$this->userLogged())
+    {
+      if (!$this->RequestHandler->isAjax()) return $this->redirect('user_login');
+      throw new UnauthorizedException("İzinsiz giriş");
+    }
 
   }
 

@@ -5,13 +5,9 @@
 
 CaseRecordSystem.directive('menu', ['$document', function($document) {
   return {
-    scope: {
-
-    },
     controller: function($scope){
 
       $scope.targetLink = null;
-
 
       $scope.$on('link-set', function(e, href){
         $scope.targetLink = href;
@@ -23,6 +19,7 @@ CaseRecordSystem.directive('menu', ['$document', function($document) {
       {
         $scope.element.addClass('active');
         $scope.element.parent().closest('li').addClass('active');
+        $scope.$emit('link-change', $scope.element);
       }
 
       // Check if page is active

@@ -1,0 +1,23 @@
+<div style="min-height:200px">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th ng-repeat="dataTableField in btDataTableFields track by $index" ng-click="sort(dataTableField)" class="{{::dataTableField.class}}" width="{{::dataTableField.width}}" ng-bind-html="getHeader(dataTableField)"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr dir-paginate="c in data | itemsPerPage: header.limit" total-items="header.count" current-page="header.page" pagination-id="dataTable">
+        <td ng-repeat="dataTableField in btDataTableFields track by $index" ng-bind-html="getValue(c, dataTableField)" class="{{::dataTableField.class}}"></td>
+      </tr>
+      <tr ng-if="isLoading()">
+        <td colspan="{{::btDataTableFields.length}}" class="bg-info"><p class="text-success text-center"><i class="fa fa-circle-o-notch fa-spin"></i> Yükleniyor</p></td>
+      </tr>
+      <tr ng-if="!isLoading() && data.length == 0">
+        <td colspan="{{::btDataTableFields.length}}" class="bg-danger"><p class="text-warning text-center"><i class="fa fa-exclamation-triangle"></i> Kayıt bulunamadı</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text-center">
+  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" pagination-id="dataTable"></dir-pagination-controls>
+</div>

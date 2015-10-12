@@ -16,6 +16,7 @@ echo $this->Bower->component('js', '/components/moment/min/moment-with-locales.m
 echo $this->Bower->component('js', '/components/angular/angular.min.js');
 echo $this->Bower->component('js', '/components/angular-resource/angular-resource.min.js');
 echo $this->Bower->component('js', '/components/angular-sanitize/angular-sanitize.min.js');
+echo $this->Bower->component('js', '/components/angular-utils-pagination/dirPagination.js');
 
 // Angular app
 echo $this->Html->script('angular_app.js');

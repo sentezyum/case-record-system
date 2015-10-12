@@ -3,6 +3,7 @@
 /* App Module */
 var CaseRecordSystem = angular.module('CaseRecordSystem', [
   'CaseRecordSystemService',
+  'angularUtils.directives.dirPagination',
   'ngSanitize'
 ]);
 

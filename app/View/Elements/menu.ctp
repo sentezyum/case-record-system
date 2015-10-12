@@ -8,6 +8,12 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="<?php echo Router::url('/'); ?>"><i class="fa fa-balance-scale"></i></a>
+      <ol class="breadcrumb visible-xs" style="margin-top: 8px;margin-bottom: 0px;margin-left:15px;">
+        <li ng-repeat="item in breadCrumb" ng-class="{active: !item.link}">
+          <span style="margin-left:-6px;" ng-if="!item.link">{{item.title}}</span>
+          <a ng-if="item.link" href="{{item.link}}">{{item.title}}</a>
+        </li>
+      </ol>
     </div>
     <div class="collapse navbar-collapse" id="main-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
@@ -38,6 +44,8 @@
             <li menu>
               <?php echo $this->Html->link(Hash::get($user, 'User.mail') . ' <span class="caret"></span>', '#', array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'escape' => false)); ?>
               <ul class="dropdown-menu">
+                <li menu><?php echo $this->Html->link("Şifre değiştir", array('controller' => 'users', 'action' => 'change_password')); ?></li>
+                <li role="separator" class="divider"></li>
                 <li><?php echo $this->Html->link("Çıkış", array('controller' => 'users', 'action' => 'logout')); ?></li>
               </ul>
             </li>

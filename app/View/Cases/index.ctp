@@ -1,39 +1,26 @@
+<?php $this->Html->script('cases/CasesController.js', array('inline' => false)); ?>
 <?php $this->Html->script('directive/bt_data_table/BtDataTable.js', array('inline' => false)); ?>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12" bt-data-table="get_cases">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th ng-click="sort('CaseRecord.name')" ng-bind-html="getHeader('CaseRecord.name', 'Açıklama')">Açıklama</th>
-            <th class="hidden-xs" ng-click="sort('CaseRecord.defendant_name')" ng-bind-html="getHeader('CaseRecord.defendant_name', 'Davalı')">Davalı</th>
-            <th class="hidden-xs">Davacı</th>
-            <th>Durum</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="c in data">
-            <td>
-              <a href="{{webroot + 'cases/view/' + c.CaseRecord.id}}">{{::c.CaseRecord.name}}</a>
-            </td>
-            <td class="hidden-xs">
-              <a ng-if="c.CaseRecord.defendant_id != null" href="{{webroot + 'customers/view/' + c.CaseRecord.defendant_id}}">{{::c.CaseRecord.defendant_name}}</a>
-              <span ng-if="c.CaseRecord.defendant_id == null">{{::c.CaseRecord.defendant_name}}</span>
-            </td>
-            <td class="hidden-xs">
-              <a ng-if="c.CaseRecord.claimant_id != null" href="{{webroot + 'customers/view/' + c.CaseRecord.claimant_id}}">{{::c.CaseRecord.defendant_name}}</a>
-              <span ng-if="c.CaseRecord.claimant_id == null">{{::c.CaseRecord.claimant_name}}</span>
-            </td>
-            <td>
-              <span ng-show="c.CaseRecord.is_active" class="label label-success">Açık</span>
-              <span ng-show="!c.CaseRecord.is_active" class="label label-danger">Kapalı</span>
-            </td>
-          </tr>
-          <tr ng-if="isLoading()">
-            <td colspan="4">Yükleniyor</td>
-          </tr>
-        </tbody>
-      </table>
+<div class="container" ng-controller="CasesController">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <h4 class="panel-title pull-left hidden-xs" style="padding-top: 7.5px;">Davalar</h4>
+      <div class="input-group col-sm-7 col-xs-12 pull-right">
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{getActiveValue()}} <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li ng-class="{active: isActive()}"><a href ng-click="setActive()">Hepsi</a></li>
+            <li ng-class="{active: isActive(true)}"><a href ng-click="setActive(true)">Açık</a></li>
+            <li ng-class="{active: isActive(false)}"><a href ng-click="setActive(false)">Kapalı</a></li>
+          </ul>
+        </span>
+        <input ng-enter="filterChanged()" type="text" ng-model="search" class="form-control" placeholder="Açıklama, Davalı, Davacı"/>
+        <span class="input-group-btn">
+          <button class="btn btn-info" ng-click="filterChanged('clear')" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+          <button class="btn btn-primary" ng-click="filterChanged()" type="button"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div>
+    </div>
+    <div class="panel-body" bt-data-table="get_cases" bt-data-table-fields="tableFields">
     </div>
   </div>
 </div>

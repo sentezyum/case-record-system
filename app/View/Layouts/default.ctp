@@ -20,8 +20,6 @@
 	    </div>
 	  </div>
 	</div>
-	<div class="container">
-		<?php echo $this->fetch('content'); ?>
-	</div>
+	<?php echo $this->fetch('content'); ?>
 </body>
 </html>

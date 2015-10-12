@@ -16,7 +16,7 @@ class CasesController extends AppController
       $this->autoRender = false;
       $this->Paginator->settings = array(
         'fields' => array('CaseRecord.id', 'CaseRecord.name', 'CaseRecord.defendant_name', 'CaseRecord.defendant_id', 'CaseRecord.claimant_name', 'CaseRecord.claimant_id', 'CaseRecord.is_active'),
-        'limit' => 20,
+        'limit' => 25,
         'order' => array(
             'CaseRecord.name' => 'asc'
         )
@@ -25,10 +25,18 @@ class CasesController extends AppController
       if (!empty($this->request->data))
       {
         if (isset($this->request->data['order'])) $this->Paginator->settings['order'] = $this->request->data['order'];
+        if (isset($this->request->data['page'])) $this->Paginator->settings['page'] = $this->request->data['page'];
+        if (isset($this->request->data['limit'])) $this->Paginator->settings['limit'] = $this->request->data['limit'];
+        if (isset($this->request->data['conditions'])) $this->Paginator->settings['conditions'] = $this->request->data['conditions'];
       }
 
-      $cases = $this->Paginator->paginate('CaseRecord');
-      echo json_encode(array('data' => $cases, 'header' => $this->request->params['paging']['CaseRecord']));
+      try {
+          $cases = $this->Paginator->paginate('CaseRecord');
+          echo json_encode(array('data' => $cases, 'header' => $this->request->params['paging']['CaseRecord']));
+      } catch (NotFoundException $e) {
+          echo json_encode(array('data' => array(), 'header' => $this->request->params['paging']['CaseRecord']));
+      }
+
       return;
     }
   }
