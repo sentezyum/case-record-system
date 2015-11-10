@@ -3,3 +3,4 @@
 /app/webroot/components/
 database.php
 reform_app_config.php
+composer.lock
