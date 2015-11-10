@@ -21,3 +21,11 @@ CaseRecordSystem.directive('ngEnter', function () {
         });
     };
 });
+
+CaseRecordSystem.directive('ngGoBack', function () {
+    return function (scope, element, attrs) {
+        element.bind("click", function (event) {
+            history.back();
+        });
+    };
+});

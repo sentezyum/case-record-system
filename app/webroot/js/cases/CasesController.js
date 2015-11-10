@@ -2,7 +2,7 @@
 
 /* CasesController */
 
-CaseRecordSystem.controller('CasesController', ['$scope', '$sce', function($scope, $sce) {
+CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSystemService', function($scope, $sce, CaseRecordSystemService) {
 
   // Datatable fields
   $scope.tableFields = [
@@ -19,7 +19,7 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', function($scop
       'sort': 'CaseRecord.defendant_name',
       'getValue': function(data) {
         if (data.CaseRecord.defendant_id == null) return $scope.highlight(data.CaseRecord.defendant_name);
-        return '<a href="' + webroot + 'customers/view/' + data.CaseRecord.defendant_id + '">' + $scope.highlight(data.CaseRecord.defendant_name) + '</a>';
+        return '<a href="' + webroot + 'customers/edit/' + data.CaseRecord.defendant_id + '">' + $scope.highlight(data.CaseRecord.defendant_name) + '</a>';
       }
     },{
       'title': 'Davacı',
@@ -28,7 +28,7 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', function($scop
       'sort': 'CaseRecord.claimant_name',
       'getValue': function(data) {
         if (data.CaseRecord.claimant_id == null) return $scope.highlight(data.CaseRecord.claimant_name);
-        return '<a href="' + webroot + 'customers/view/' + data.CaseRecord.claimant_id + '">' + $scope.highlight(data.CaseRecord.claimant_name) + '</a>';
+        return '<a href="' + webroot + 'customers/edit/' + data.CaseRecord.claimant_id + '">' + $scope.highlight(data.CaseRecord.claimant_name) + '</a>';
       }
     },{
       'title': 'Durum',
@@ -92,6 +92,6 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', function($scop
     }
     if ($scope._isActive !== undefined) conditions['CaseRecord.is_active'] = $scope._isActive;
     $scope.$broadcast('refresh-table', {'conditions': conditions});
-  }
+  };
 
 }]);

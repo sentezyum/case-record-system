@@ -2,7 +2,7 @@
 
 /* CaseRecordSystemController Controller */
 
-CaseRecordSystem.controller('CaseRecordSystemController', function ($scope, $sce, CaseRecordSystemService)
+CaseRecordSystem.controller('CaseRecordSystemController', function ($scope, $sce, $window, CaseRecordSystemService)
 {
   $scope.breadCrumb = [];
   $scope.$on('link-change', function(e, element) {
@@ -13,4 +13,5 @@ CaseRecordSystem.controller('CaseRecordSystemController', function ($scope, $sce
     });
     $scope.breadCrumb = $scope.breadCrumb.reverse();
   });
+
 });

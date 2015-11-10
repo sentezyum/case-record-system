@@ -49,13 +49,37 @@ class CustomersController extends AppController
     {
       if ($this->Customer->save($this->request->data))
       {
+        if ($this->request->isAjax())
+        {
+          $this->autoRender = false;
+          echo json_encode(array('success' => 'ok', 'data' => $this->Customer->findById($this->Customer->id)));
+          return;
+        }
         $this->Flash->set('Kuruluş oluşturuldu', array('params' => array('class' => 'success')));
         $this->redirect(array('action' => 'edit', $this->Customer->id));
       }
       else
       {
+        if ($this->request->isAjax())
+        {
+          $this->autoRender = false;
+          echo json_encode(array('success' => 'error', 'message' => Hash::get($this->Customer->validationErrors, 'name.0')));
+          return;
+        }
         $this->Flash->set('Kuruluş oluşturamadı<br/><small>Girdiğiniz bilgilieri kontrol edip tekrar deneyiniz</small>', array('params' => array('class' => 'danger')));
       }
+    }
+  }
+
+  // get all customers
+  public function all()
+  {
+    if ($this->request->isAjax())
+    {
+      $this->autoRender = false;
+      $customers = $this->Customer->find('all', array('recursive' => -1));
+      echo json_encode($customers);
+      return;
     }
   }
 

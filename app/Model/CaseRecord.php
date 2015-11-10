@@ -11,13 +11,15 @@ class CaseRecord extends AppModel
     'name' => array(
       'notBlank' => array(
         'rule' => 'notBlank',
-        'message' => 'Boş bırakılamaz'
+        'message' => 'Boş bırakılamaz',
+        'required' => true
       )
     ),
     'no' => array(
       'notBlank' => array(
         'rule' => 'notBlank',
-        'message' => 'Boş bırakılamaz.'
+        'message' => 'Boş bırakılamaz.',
+        'required' => true
       ),
       'numeric' => array(
         'rule' => 'numeric',
@@ -27,13 +29,29 @@ class CaseRecord extends AppModel
     'claimant_name' => array(
       'notBlank' => array(
         'rule' => 'notBlank',
-        'message' => 'Boş bırakılamaz.'
+        'message' => 'Boş bırakılamaz.',
+        'required' => true
+      )
+    ),
+    'claimant_id' => array(
+      'notBlank' => array(
+        'rule' => 'notBlank',
+        'message' => 'Boş bırakılamaz.',
+        'required' => true
       )
     ),
     'defendant_name' => array(
       'notBlank' => array(
         'rule' => 'notBlank',
-        'message' => 'Boş bırakılamaz.'
+        'message' => 'Boş bırakılamaz.',
+        'required' => true
+      )
+    ),
+    'defendant_id' => array(
+      'notBlank' => array(
+        'rule' => 'notBlank',
+        'message' => 'Boş bırakılamaz.',
+        'required' => true
       )
     )
   );

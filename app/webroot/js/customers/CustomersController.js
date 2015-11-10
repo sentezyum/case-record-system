@@ -10,7 +10,7 @@ CaseRecordSystem.controller('CustomersController', ['$scope', '$sce', function($
       'title': 'Adı',
       'sort': 'Customer.name',
       'getValue': function(data) {
-        return '<a href="' + webroot + 'cases/edit/' + data.Customer.name + '">' + $scope.highlight(data.Customer.name) + '</a>';
+        return '<a href="' + webroot + 'customers/edit/' + data.Customer.id + '">' + $scope.highlight(data.Customer.name) + '</a>';
       }
     }
   ];

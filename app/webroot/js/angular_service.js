@@ -43,7 +43,9 @@ CaseRecordSystemService.factory('CaseRecordSystemService', ['$resource',
     function($resource){
       return $resource(webroot + ':controller/:action.json', {}, {
         get_cases: {method:'POST', params: {controller: "cases", action: "index"}, isArray: false},
-        get_customers: {method:'POST', params: {controller: "customers", action: "index"}, isArray: false}
+        get_customers: {method:'POST', params: {controller: "customers", action: "index"}, isArray: false},
+        all_customer: {method:'POST', params: {controller: "customers", action: "all"}, isArray: true},
+        save_customer: {method:'POST', params: {controller: "customers", action: "add"}, isArray: false}
       });
     }
 ]);

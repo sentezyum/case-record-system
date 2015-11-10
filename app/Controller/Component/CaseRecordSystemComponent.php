@@ -42,6 +42,16 @@ class CaseRecordSystemComponent extends Component
     return $this->Session->delete('Logged');
   }
 
+  // Add History
+  public function addHistory($params)
+  {
+    $history = $this->Session->read('History');
+    $history = is_array($history) ? $history : array();
+    if (count($history) > 5) $history = array_slice($history, count($history) - 5);
+    if (crc32(json_encode(end($history))) != crc32(json_encode($params))) array_push($history, $params);
+    $this->Session->write('History', $history);
+  }
+
   // Check user is admin
   public function userIsAdmin($user = array())
   {
@@ -75,6 +85,9 @@ class CaseRecordSystemComponent extends Component
 
     // Check Controller If Error
     if ($this->Controller->name == 'CakeError') return;
+
+    // Add History
+    if (!$this->RequestHandler->isAjax()) $this->addHistory($this->Controller->request->params);
 
     // Redirect login page if not loggin
     if (!$this->isPage('user_login') && !$this->isPage('user_logout') && !$this->userLogged())

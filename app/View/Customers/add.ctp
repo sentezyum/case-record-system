@@ -11,7 +11,7 @@
       <div class="col-sm-6">
         <button type="submit" class="btn btn-success"/>Kaydet</button>
         &nbsp;veya&nbsp;
-        <?php echo $this->Html->link('İptal Et', array('action' => 'index')); ?>
+        <?php echo $this->History->goBack('İptal Et', array(), -1); ?>
       </div>
     </div>
   <?php echo $this->Form->end(); ?>

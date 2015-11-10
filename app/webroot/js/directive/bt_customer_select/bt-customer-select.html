@@ -1,0 +1,30 @@
+<button class="btn btn-primary" type="button" ng-click="open()">
+  <i ng-hide="isLoading('customers')" class="fa fa-bars"></i>
+  <i ng-show="isLoading('customers')" class="fa fa-gear fa-spin"></i>
+</button>
+<div class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" ng-click="close()" class="close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{btTitle}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input class="form-control" ng-disabled="isLoading('save')" ng-model="customerSearchText" placeholder="{{btTitle}} ara" ng-model-options="{debounce: { 'default': 200, 'blur': 0}}" />
+        </div>
+        <div class="list-group attribute-list" style="font-size=14px;">
+          <a href class="list-group-item" ng-repeat="customer in filtered = (customers | filter:customerSearchText | limitTo:getOption('item_limit'))" ng-click="selectCustomer(customer)" ng-bind-html="highlight(customer.Customer.name)">
+            {{::customer.Customer.name}}
+          </a>
+          <a href class="list-group-item" ng-if="filteredItemCount() > 0" ng-click="showMore()">Daha fazla göster <span class="label label-primary">+ {{filteredItemCount()}}</span></a>
+          <a href ng-disabled="isLoading('save')" class="list-group-item" ng-if="filtered.length === 0 && customerSearchText.length > 0 && filteredItemCount() < 1" ng-click="addNew(customerSearchText)">
+            <span class="label label-default" ng-hide="isLoading('save')">Yeni oluştur</span>
+            <span class="label label-default" ng-show="isLoading('save')"><i class="fa fa-gear fa-spin"></i> Lütfen bekleyin</span>
+            &nbsp;&nbsp;{{customerSearchText}}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
