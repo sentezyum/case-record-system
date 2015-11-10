@@ -52,6 +52,15 @@ class CaseRecordSystemComponent extends Component
     $this->Session->write('History', $history);
   }
 
+  // Remove History
+  public function removeHistory($state)
+  {
+    $history = $this->Session->read('History');
+    $history = is_array($history) ? $history : array();
+    $history = array_slice($history, 0, count($history) + ($state - 1));
+    $this->Session->write('History', $history);
+  }
+
   // Check user is admin
   public function userIsAdmin($user = array())
   {

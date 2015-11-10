@@ -48,6 +48,7 @@ class CasesController extends AppController
     {
       if ($this->CaseRecord->save($this->request->data))
       {
+        $this->CaseRecordSystem->removeHistory(0);
         $this->Flash->set('Dava oluşturuldu', array('params' => array('class' => 'success')));
         $this->redirect(array('action' => 'edit', $this->CaseRecord->id));
       }

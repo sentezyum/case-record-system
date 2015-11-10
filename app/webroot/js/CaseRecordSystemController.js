@@ -13,5 +13,4 @@ CaseRecordSystem.controller('CaseRecordSystemController', function ($scope, $sce
     });
     $scope.breadCrumb = $scope.breadCrumb.reverse();
   });
-
 });
