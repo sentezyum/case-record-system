@@ -27,7 +27,7 @@ class CasesController extends AppController
         if (isset($this->request->data['order'])) $this->Paginator->settings['order'] = $this->request->data['order'];
         if (isset($this->request->data['page'])) $this->Paginator->settings['page'] = $this->request->data['page'];
         if (isset($this->request->data['limit'])) $this->Paginator->settings['limit'] = $this->request->data['limit'];
-        if (isset($this->request->data['conditions'])) $this->Paginator->settings['conditions'] = $this->request->data['conditions'];
+        if (isset($this->request->data['conditions'])) $this->Paginator->settings['conditions'] = array_merge($this->request->data['conditions'], $this->Paginator->settings['conditions']);
       }
 
       try {

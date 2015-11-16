@@ -55,4 +55,15 @@ class CaseRecord extends AppModel
       )
     )
   );
+
+  public function beforeFind($query = array())
+  {
+    if (!empty(CakeSession::read('Logged.User.customer_id')))
+    {
+      $customerId = CakeSession::read('Logged.User.customer_id');
+      if (!isset($query['conditions'])) $query['conditions'] = array();
+      $query['conditions'] = array_merge($query['conditions'], array('OR' => array('CaseRecord.defendant_id' => $customerId, 'CaseRecord.claimant_id' => $customerId)));
+    }
+    return $query;
+  }
 }
