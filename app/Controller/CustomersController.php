@@ -52,6 +52,7 @@ class CustomersController extends AppController
         if ($this->request->isAjax())
         {
           $this->autoRender = false;
+          $this->Customer->recursive = 0;
           echo json_encode(array('success' => 'ok', 'data' => $this->Customer->findById($this->Customer->id)));
           return;
         }
@@ -95,6 +96,7 @@ class CustomersController extends AppController
     }
     else
     {
+      $this->Customer->recursive = 0;
       $this->request->data = $this->Customer->findById($id);
     }
   }

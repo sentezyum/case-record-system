@@ -35,6 +35,13 @@
                 <li menu><?php echo $this->Html->link("Yeni oluştur", array('controller' => 'customers', 'action' => 'add')); ?></li>
               </ul>
             </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kullanıcılar <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li menu><?php echo $this->Html->link("Listele", array('controller' => 'users', 'action' => 'index')); ?></li>
+                <li menu><?php echo $this->Html->link("Yeni oluştur", array('controller' => 'users', 'action' => 'add')); ?></li>
+              </ul>
+            </li>
           <?php } ?>
         <?php } ?>
       </ul>

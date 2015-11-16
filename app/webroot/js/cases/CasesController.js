@@ -18,7 +18,7 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSys
       'width': '20%',
       'sort': 'CaseRecord.defendant_name',
       'getValue': function(data) {
-        if (data.CaseRecord.defendant_id == null) return $scope.highlight(data.CaseRecord.defendant_name);
+        if (data.CaseRecord.defendant_id == null) return "Tanımlı değil";
         return '<a href="' + webroot + 'customers/edit/' + data.CaseRecord.defendant_id + '">' + $scope.highlight(data.CaseRecord.defendant_name) + '</a>';
       }
     },{
@@ -27,7 +27,7 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSys
       'width': '20%',
       'sort': 'CaseRecord.claimant_name',
       'getValue': function(data) {
-        if (data.CaseRecord.claimant_id == null) return $scope.highlight(data.CaseRecord.claimant_name);
+        if (data.CaseRecord.claimant_id == null) return "Tanımlı değil";
         return '<a href="' + webroot + 'customers/edit/' + data.CaseRecord.claimant_id + '">' + $scope.highlight(data.CaseRecord.claimant_name) + '</a>';
       }
     },{
