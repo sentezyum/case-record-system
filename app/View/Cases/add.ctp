@@ -65,7 +65,8 @@
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <button type="submit" class="btn btn-success"/>Kaydet</button>
+        <hr size="1" />
+        <button type="submit" class="btn btn-success"/><i class="fa fa-plus-circle"></i> Oluştur</button>
         &nbsp;veya&nbsp;
         <?php echo $this->History->goBack('İptal Et', array(), -1); ?>
       </div>

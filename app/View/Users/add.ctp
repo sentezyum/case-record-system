@@ -4,10 +4,11 @@
   <script>
     window.data = <?php echo json_encode($this->request->data); ?>;
   </script>
-  <?php echo $this->Form->create("User", array('inputDefaults' => array('label' => false, 'div' => false, 'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-block'))))); ?>
+  <?php echo $this->Form->create("User", array('autocomplete' => 'off', 'inputDefaults' => array('label' => false, 'div' => false, 'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-block'))))); ?>
     <div class="row">
       <div class="col-sm-5">
         <div class="form-group">
+          <input type="text" style="display:none"><input type="password" style="display:none">
           <?php echo $this->Form->input('User.mail', array('label' => 'Mail adresi: ', 'class' => 'form-control', 'autofocus' => 'autofocus')); ?>
         </div>
       </div>
@@ -51,7 +52,8 @@
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <button type="submit" class="btn btn-success"/>Kaydet</button>
+        <hr size="1" />
+        <button type="submit" class="btn btn-success"/><i class="fa fa-plus-circle"></i> Oluştur</button>
         &nbsp;veya&nbsp;
         <?php echo $this->History->goBack('İptal Et', array(), -1); ?>
       </div>

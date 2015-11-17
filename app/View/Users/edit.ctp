@@ -62,9 +62,8 @@
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <button type="submit" class="btn btn-success"/>Kaydet</button>
-        &nbsp;veya&nbsp;
-        <?php echo $this->History->goBack('İptal Et', array(), -1); ?>
+        <hr size="1" />
+        <button type="submit" class="btn btn-success"/><i class="fa fa-floppy-o"></i> Güncelle</button>
       </div>
     </div>
   <?php echo $this->Form->end(); ?>

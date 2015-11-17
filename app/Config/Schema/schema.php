@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+App::uses('FirstData', 'Config/Schema');
+
 class AppSchema extends CakeSchema {
 
 	public function before($event = array()) {
@@ -6,6 +9,8 @@ class AppSchema extends CakeSchema {
 	}
 
 	public function after($event = array()) {
+		$firstData = new FirstData();
+		return $firstData->create($event);
 	}
 
 	public $cases = array(
