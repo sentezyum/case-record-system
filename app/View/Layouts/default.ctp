@@ -13,13 +13,7 @@
 </head>
 <body class="default" ng-controller="CaseRecordSystemController">
 	<?php echo $this->element('menu'); ?>
-	<div class="container">
-	  <div class="row">
-	    <div class="col col-sm-8">
-	      <?php echo $this->Flash->render() ?>
-	    </div>
-	  </div>
-	</div>
+  <?php echo $this->Flash->render() ?>
 	<?php echo $this->fetch('content'); ?>
 </body>
 </html>

@@ -13,6 +13,16 @@ class HistoryHelper extends AppHelper
       $history = is_array($history) ? $history : array();
       $target = array_slice($history, $state - 1, 1);
       $target = count($target) > 0 ? $target[0] : $this->webroot;
-      return $this->Html->link($title, $target, $options);
+      return $this->Html->link($title, $this->fixTarget($target), $options);
+    }
+
+    private function fixTarget($target)
+    {
+      if (is_array($target) && !empty($pass = Hash::get($target, 'pass')))
+      {
+        unset($target['pass']);
+        $target = $target + $pass;
+      }
+      return $target;
     }
 }

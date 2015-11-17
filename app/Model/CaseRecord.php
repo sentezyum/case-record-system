@@ -4,7 +4,6 @@ App::uses('AppModel', 'Model');
 
 class CaseRecord extends AppModel
 {
-  public $useTable = 'cases';
 
   //Validate
   public $validate = array(

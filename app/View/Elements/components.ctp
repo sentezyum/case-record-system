@@ -4,6 +4,7 @@
 echo $this->Bower->component('css', '/components/bootstrap/dist/css/bootstrap.min.css');
 echo $this->Bower->component('css', '/components/fontawesome/css/font-awesome.min.css');
 echo $this->Bower->component('css', '/components/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css');
+echo $this->Bower->component('css', '/components/toastr/toastr.min.css');
 
 // lib
 echo $this->Bower->component('js', '/components/jquery/dist/jquery.min.js');
@@ -11,6 +12,7 @@ echo $this->Bower->component('js', '/components/underscore/underscore-min.js');
 echo $this->Bower->component('js', '/components/bootstrap/dist/js/bootstrap.min.js');
 echo $this->Bower->component('js', '/components/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js');
 echo $this->Bower->component('js', '/components/moment/min/moment-with-locales.min.js');
+echo $this->Bower->component('js', '/components/toastr/toastr.min.js');
 
 // angular lib
 echo $this->Bower->component('js', '/components/angular/angular.min.js');

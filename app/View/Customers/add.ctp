@@ -1,19 +1,32 @@
 <div class="container">
-  <?php echo $this->Form->create("Customer", array('inputDefaults' => array('label' => false, 'div' => false, 'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-block'))))); ?>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <?php echo $this->Form->input('Customer.name', array('label' => 'Kuruluş adı: ', 'class' => 'form-control')); ?>
+
+  <?php
+    echo $this->element('page_header', array(
+      'title' => 'Kuruluş oluştur',
+      'icon' => 'fa-plus-square',
+      'links' => array(
+        'Tüm Kuruluşlar' => array('action' => 'index')
+      )
+    ));
+  ?>
+
+  <div class="col-xs-12">
+    <?php echo $this->Form->create("Customer", array('inputDefaults' => array('label' => false, 'div' => false, 'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-block'))))); ?>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <?php echo $this->Form->input('Customer.name', array('label' => 'Kuruluş adı: ', 'class' => 'form-control')); ?>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <hr size="1" />
-        <button type="submit" class="btn btn-success"/><i class="fa fa-plus-circle"></i> Oluştur</button>
-        &nbsp;veya&nbsp;
-        <?php echo $this->History->goBack('İptal Et', array(), -1); ?>
+      <div class="row">
+        <div class="col-sm-6">
+          <hr size="1" />
+          <button type="submit" class="btn btn-success"/><i class="fa fa-plus-circle"></i> Oluştur</button>
+          &nbsp;veya&nbsp;
+          <?php echo $this->History->goBack('İptal Et', array(), -1); ?>
+        </div>
       </div>
-    </div>
-  <?php echo $this->Form->end(); ?>
+    <?php echo $this->Form->end(); ?>
+  </div>
 </div>

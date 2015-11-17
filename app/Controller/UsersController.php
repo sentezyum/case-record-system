@@ -15,7 +15,7 @@ class UsersController extends AppController
     if ($this->request->isAjax())
     {
       $this->autoRender = false;
-      $this->Paginator->settings = array(
+      $this->PaginatorSettings(array(
         'fields' => array('User.created', 'User.customer_id', 'User.id', 'User.is_active', 'User.is_admin', 'User.is_system_admin', 'User.mail', 'Customer.id', 'Customer.name'),
         'limit' => 25,
         'conditions' => array(
@@ -24,24 +24,16 @@ class UsersController extends AppController
         'order' => array(
             'User.mail' => 'asc'
         )
-      );
+      ));
 
-      if (!empty($this->request->data))
+      try
       {
-        if (isset($this->request->data['order'])) $this->Paginator->settings['order'] = $this->request->data['order'];
-        if (isset($this->request->data['page'])) $this->Paginator->settings['page'] = $this->request->data['page'];
-        if (isset($this->request->data['limit'])) $this->Paginator->settings['limit'] = $this->request->data['limit'];
-        if (isset($this->request->data['conditions'])) $this->Paginator->settings['conditions'] = array_merge($this->request->data['conditions'], $this->Paginator->settings['conditions']);
+          echo json_encode(array('data' => $this->Paginator->paginate('User'), 'header' => $this->request->params['paging']['User']));
       }
-
-      try {
-          $users = $this->Paginator->paginate('User');
-          echo json_encode(array('data' => $users, 'header' => $this->request->params['paging']['User']));
-      } catch (NotFoundException $e) {
+      catch (NotFoundException $e)
+      {
           echo json_encode(array('data' => array(), 'header' => $this->request->params['paging']['User']));
       }
-
-      return;
     }
   }
 
@@ -57,7 +49,7 @@ class UsersController extends AppController
         $this->request->data = $this->User->findById($id);
       }
       else
-        $this->Flash->set('Kullanıcı güncellenemedi<br/><small>Girdiğiniz bilgilieri kontrol edip tekrar deneyiniz</small>', array('params' => array('class' => 'danger')));
+        $this->Flash->set('Kullanıcı güncellenemedi<br/><small>Girdiğiniz bilgilieri kontrol edip tekrar deneyiniz</small>', array('params' => array('class' => 'error')));
     }
     else
     {
@@ -91,7 +83,7 @@ class UsersController extends AppController
           echo json_encode(array('success' => 'error', 'message' => implode(", ", Hash::extract($this->User->validationErrors, '{s}.0'))));
           return;
         }
-        $this->Flash->set('Kullanıcı oluşturamadı<br/><small>Girdiğiniz bilgilieri kontrol edip tekrar deneyiniz</small>', array('params' => array('class' => 'danger')));
+        $this->Flash->set('Kullanıcı oluşturamadı<br/><small>Girdiğiniz bilgilieri kontrol edip tekrar deneyiniz</small>', array('params' => array('class' => 'error')));
       }
     }
     else

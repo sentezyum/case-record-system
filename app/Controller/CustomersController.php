@@ -15,30 +15,22 @@ class CustomersController extends AppController
     if ($this->request->isAjax())
     {
       $this->autoRender = false;
-      $this->Paginator->settings = array(
+      $this->PaginatorSettings(array(
         'fields' => array('Customer.id', 'Customer.name'),
         'limit' => 25,
         'order' => array(
             'Customer.name' => 'asc'
         )
-      );
+      ));
 
-      if (!empty($this->request->data))
+      try
       {
-        if (isset($this->request->data['order'])) $this->Paginator->settings['order'] = $this->request->data['order'];
-        if (isset($this->request->data['page'])) $this->Paginator->settings['page'] = $this->request->data['page'];
-        if (isset($this->request->data['limit'])) $this->Paginator->settings['limit'] = $this->request->data['limit'];
-        if (isset($this->request->data['conditions'])) $this->Paginator->settings['conditions'] = $this->request->data['conditions'];
+        echo json_encode(array('data' => $this->Paginator->paginate('Customer'), 'header' => $this->request->params['paging']['Customer']));
       }
-
-      try {
-          $customers = $this->Paginator->paginate('Customer');
-          echo json_encode(array('data' => $customers, 'header' => $this->request->params['paging']['Customer']));
-      } catch (NotFoundException $e) {
-          echo json_encode(array('data' => array(), 'header' => $this->request->params['paging']['Customer']));
+      catch (NotFoundException $e)
+      {
+        echo json_encode(array('data' => array(), 'header' => $this->request->params['paging']['Customer']));
       }
-
-      return;
     }
   }
 
@@ -67,7 +59,7 @@ class CustomersController extends AppController
           echo json_encode(array('success' => 'error', 'message' => Hash::get($this->Customer->validationErrors, 'name.0')));
           return;
         }
-        $this->Flash->set('Kuruluş oluşturamadı<br/><small>Girdiğiniz bilgilieri kontrol edip tekrar deneyiniz</small>', array('params' => array('class' => 'danger')));
+        $this->Flash->set('Kuruluş oluşturamadı<br/><small>Girdiğiniz bilgilieri kontrol edip tekrar deneyiniz</small>', array('params' => array('class' => 'error')));
       }
     }
   }
@@ -92,7 +84,7 @@ class CustomersController extends AppController
       if ($this->Customer->save($this->request->data))
         $this->Flash->set('Kuruluş güncellendi', array('params' => array('class' => 'success')));
       else
-        $this->Flash->set('Kuruluş güncellenemedi<br/><small>Girdiğiniz bilgilieri kontrol edip tekrar deneyiniz</small>', array('params' => array('class' => 'danger')));
+        $this->Flash->set('Kuruluş güncellenemedi<br/><small>Girdiğiniz bilgilieri kontrol edip tekrar deneyiniz</small>', array('params' => array('class' => 'error')));
     }
     else
     {
