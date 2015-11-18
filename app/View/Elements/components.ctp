@@ -21,10 +21,10 @@ echo $this->Bower->component('js', '/components/angular-sanitize/angular-sanitiz
 echo $this->Bower->component('js', '/components/angular-utils-pagination/dirPagination.js');
 
 // Angular app
-echo $this->Html->script('angular_app.js');
-echo $this->Html->script('angular_service.js');
-echo $this->Html->script('CaseRecordSystemController.js');
-echo $this->Html->script('menu/Menu.js');
+echo $this->Html->script('angular_app.js?v1');
+echo $this->Html->script('angular_service.js?v1');
+echo $this->Html->script('CaseRecordSystemController.js?v1');
+echo $this->Html->script('menu/Menu.js?v1');
 
 // user_defined scripts
 echo $this->fetch('meta');

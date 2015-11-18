@@ -1,5 +1,5 @@
-<?php $this->Html->script('users/UsersController.js', array('inline' => false)); ?>
-<?php $this->Html->script('directive/bt_data_table/BtDataTable.js', array('inline' => false)); ?>
+<?php $this->Html->script('users/UsersController.js?v1', array('inline' => false)); ?>
+<?php $this->Html->script('directive/bt_data_table/BtDataTable.js?v1', array('inline' => false)); ?>
 <div class="container" ng-controller="UsersController">
   <div class="panel panel-default">
     <div class="panel-heading clearfix">

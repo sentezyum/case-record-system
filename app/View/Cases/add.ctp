@@ -1,6 +1,6 @@
 <?php echo $this->element('link_data'); ?>
-<?php $this->Html->script('cases/AddCaseController.js', array('inline' => false)); ?>
-<?php $this->Html->script('directive/bt_customer_select/BtCustomerSelect.js', array('inline' => false)); ?>
+<?php $this->Html->script('cases/AddCaseController.js?v1', array('inline' => false)); ?>
+<?php $this->Html->script('directive/bt_customer_select/BtCustomerSelect.js?v1', array('inline' => false)); ?>
 <div class="container" ng-controller="AddCaseController">
 
   <?php

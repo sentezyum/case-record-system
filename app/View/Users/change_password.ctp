@@ -1,4 +1,4 @@
-<?php $this->Html->script('users/ChangeUserPasswordController.js', array('inline' => false)); ?>
+<?php $this->Html->script('users/ChangeUserPasswordController.js?v1', array('inline' => false)); ?>
 <div class="container" ng-controller="ChangeUserPasswordController">
   <?php echo $this->Form->create("User", array('inputDefaults' => array('label' => false, 'div' => false, 'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-block'))))); ?>
     <div class="row">
