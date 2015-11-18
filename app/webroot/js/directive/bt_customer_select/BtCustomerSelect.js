@@ -144,6 +144,7 @@ CaseRecordSystem.directive('btCustomerSelect', function (){
       // Listen customer added event
       $scope.$on('added-customer', function(event, customer){
         //if (_.find($scope.customers, function(_customer){ return _customer.name == customer.name; }) != undefined) return;
+        if ($scope.customers == null) $scope.customers = [];
         $scope.customers.push(customer);
       });
 
