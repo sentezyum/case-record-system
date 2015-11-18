@@ -54,10 +54,30 @@ class CasesController extends AppController
   // edit case
   public function edit($id)
   {
+    $this->set('caseRecordFiles', $this->CaseRecord->CaseRecordFile->find('all', array('conditions' => array('CaseRecordFile.case_record_id' => $id))));
+    $this->CaseRecord->recursive = -1;
+    
     if (!empty($this->request->data))
     {
+      if (isset($this->request->data['CaseRecordFile']))
+      {
+        if ($this->CaseRecord->CaseRecordFile->save($this->request->data))
+        {
+          $this->Flash->set('Dosya eklendi', array('params' => array('class' => 'success')));
+          $this->redirect(array('action' => 'edit', $id));
+        }
+        else
+          $this->Flash->set('Dosya eklenemedi<br/><small>Girdiğiniz bilgilieri kontrol edip tekrar deneyiniz</small>', array('params' => array('class' => 'error')));
+
+        $this->request->data += $this->CaseRecord->findById($id);
+        return;
+      }
+
       if ($this->CaseRecord->save($this->request->data))
+      {
         $this->Flash->set('Dava güncellendi', array('params' => array('class' => 'success')));
+        $this->redirect(array('action' => 'edit', $id));
+      }
       else
         $this->Flash->set('Dava kaydedilemedi<br/><small>Girdiğiniz bilgilieri kontrol edip tekrar deneyiniz</small>', array('params' => array('class' => 'error')));
     }

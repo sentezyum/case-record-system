@@ -1,6 +1,10 @@
 /Vendor/
 /app/tmp/
 /app/webroot/components/
+/app/webroot/upload/*
+!/app/webroot/upload/empty
+/app/Plugin/Uploader/*
 database.php
+app_config.php
 reform_app_config.php
 composer.lock

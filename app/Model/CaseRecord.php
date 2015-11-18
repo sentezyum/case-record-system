@@ -5,6 +5,9 @@ App::uses('AppModel', 'Model');
 class CaseRecord extends AppModel
 {
 
+  // Has many file
+  public $hasMany = array('CaseRecordFile');
+
   //Validate
   public $validate = array(
     'name' => array(
