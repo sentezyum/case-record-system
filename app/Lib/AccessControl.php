@@ -54,7 +54,7 @@ class AccessControl
     $controlList = array("*.*", $scope . ".*", $scope . "." . $action);
     foreach ($rawAcl as $aclLine)
     {
-      if (empty($aclLine) || preg_match('/^#/', $aclLine) || count($acl = preg_split("/\s+/", $aclLine)) !== 4) continue;
+      if (empty($aclLine) || preg_match('/^#/', $aclLine) || count($acl = preg_split("/\s+/", $aclLine)) < 4) continue;
       if ((($acl[1] == "USER" && ($acl[2] == "*" || $acl[2] == $mail)) || ($acl[1] == "GROUP" && ($acl[2] == "*" || $acl[2] == $userGroup))) && in_array($acl[3], $controlList))
       {
         if ($acl[0] == "ALLOW") return true;
