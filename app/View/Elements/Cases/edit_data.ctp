@@ -1,6 +1,17 @@
 <?php echo $this->Form->create("CaseRecord", array('inputDefaults' => array('label' => false, 'div' => false, 'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-block'))))); ?>
   <?php echo $this->Form->input('CaseRecord.id', array('type' => 'hidden')); ?>
   <div class="row">
+    <div class="col-sm-3">
+      <label>Tarih :</label>
+      <div class="input-group" style="margin-bottom:15px;">
+        <?php echo $this->Form->input('CaseRecord.date', array('type' => 'text', 'readonly' => 'readonly', 'label' => false, 'class' => 'form-control', 'uib-datepicker-popup' => 'yyyy-MM-dd', 'is-open' => 'dateState', 'ng-model' => 'caseDate' )); ?>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="dateState = true"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-sm-4">
       <div class="form-group">
         <?php echo $this->Form->input('CaseRecord.no', array('label' => 'Büro kart no: ', 'class' => 'form-control', 'autofocus' => 'autofocus')); ?>
@@ -62,6 +73,7 @@
     <div class="col-sm-6">
       <hr size="1" />
       <button type="submit" class="btn btn-success"/><i class="fa fa-floppy-o"></i> Güncelle</button>
+      <?php echo $this->Html->link('<i class="fa fa-times-circle"></i> Kaldır', array('action' => 'delete', $this->request->data['CaseRecord']['id']), array('class' => 'btn btn-danger', 'escape' => false)); ?>
     </div>
   </div>
 <?php echo $this->Form->end(); ?>

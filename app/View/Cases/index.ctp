@@ -1,10 +1,12 @@
-<?php $this->Html->script('cases/CasesController.js?v1', array('inline' => false)); ?>
+<?php $this->Html->script('directive/bt_case_files/BtCaseFiles.js?v1', array('inline' => false)); ?>
 <?php $this->Html->script('directive/bt_data_table/BtDataTable.js?v1', array('inline' => false)); ?>
+<?php $this->Html->script('cases/CasesController.js?v1', array('inline' => false)); ?>
 <div class="container" ng-controller="CasesController">
   <div class="panel panel-default">
     <div class="panel-heading clearfix">
       <h4 class="panel-title pull-left hidden-xs" style="padding-top: 7.5px;">Davalar</h4>
       <div class="input-group col-sm-7 col-xs-12 pull-right">
+        <bt-case-files>asdasdasd</bt-case-files>
         <span class="input-group-btn">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{getActiveValue()}} <span class="caret"></span></button>
           <ul class="dropdown-menu">

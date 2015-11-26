@@ -19,9 +19,13 @@ echo $this->Bower->component('js', '/components/angular/angular.min.js');
 echo $this->Bower->component('js', '/components/angular-resource/angular-resource.min.js');
 echo $this->Bower->component('js', '/components/angular-sanitize/angular-sanitize.min.js');
 echo $this->Bower->component('js', '/components/angular-utils-pagination/dirPagination.js');
+echo $this->Bower->component('js', '/components/angular-bootstrap/ui-bootstrap.min.js');
+echo $this->Bower->component('js', '/components/angular-bootstrap/ui-bootstrap-tpls.js');
+echo $this->Bower->component('js', '/components/angular-moment/angular-moment.min.js');
 
 // Angular app
 echo $this->Html->script('angular_app.js?v1');
+echo $this->Html->script('angular_locale.js?v1');
 echo $this->Html->script('angular_service.js?v1');
 echo $this->Html->script('CaseRecordSystemController.js?v1');
 echo $this->Html->script('menu/Menu.js?v1');

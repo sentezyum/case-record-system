@@ -46,7 +46,7 @@
           <div class="input-group" style="margin-bottom:15px;">
             <?php echo $this->Form->input('User.customer_name', array('label' => false, 'class' => 'form-control', 'ng-value' => 'customer.name', 'readonly' => true)); ?>
             <?php echo $this->Form->input('User.customer_id', array('type' => 'hidden', 'ng-value' => 'customer.id')); ?>
-            <span class="input-group-btn" bt-title="Davacı" bt-customer="customer" style="vertical-align: top;" bt-customer-select></span>
+            <span class="input-group-btn" bt-title="Bağlı Kuruluş" bt-customer="customer" style="vertical-align: top;" bt-customer-select></span>
           </div>
         </div>
       </div>

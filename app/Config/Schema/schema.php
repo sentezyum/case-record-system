@@ -1,7 +1,4 @@
-<?php
-
-App::uses('FirstData', 'Config/Schema');
-
+<?php 
 class AppSchema extends CakeSchema {
 
 	public function before($event = array()) {
@@ -9,8 +6,6 @@ class AppSchema extends CakeSchema {
 	}
 
 	public function after($event = array()) {
-		$firstData = new FirstData();
-		return $firstData->create($event);
 	}
 
 	public $case_record_files = array(
@@ -22,7 +17,7 @@ class AppSchema extends CakeSchema {
 		'size' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
 		'mime_type' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 100, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'description' => array('type' => 'string', 'null' => true, 'length' => 250, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'date' => array('type' => 'datetime', 'null' => true, 'default' => null),
+		'date' => array('type' => 'date', 'null' => true, 'default' => null),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'indexes' => array(
@@ -42,7 +37,7 @@ class AppSchema extends CakeSchema {
 		'unit' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 100, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'basis_number' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 100, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'is_active' => array('type' => 'boolean', 'null' => true, 'default' => '1'),
-		'date' => array('type' => 'datetime', 'null' => true, 'default' => null),
+		'date' => array('type' => 'date', 'null' => true, 'default' => null),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'indexes' => array(

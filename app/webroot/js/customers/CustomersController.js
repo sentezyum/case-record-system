@@ -24,21 +24,33 @@ CaseRecordSystem.controller('CustomersController', ['$scope', '$sce', function($
 
   $scope.filterChanged = function(command)
   {
-    if (!$scope.search) $scope.search = "";
     if (command == "clear")
     {
       $scope.search = "";
-      return $scope.filterChanged();
+      $scope._isActive = undefined;
     }
-    if ($scope.searchText === $scope.search) return;
+    $scope.$emit('filter-change');
+  };
+
+  // Catch Filter Changed
+  $scope.$on('filter-change', function(e, filter, changePage, refreshData)
+  {
+    if ($scope.searchText === $scope.search && $scope._prevIsActive === $scope._isActive) return;
     $scope.searchText = $scope.search;
-    var conditions = {};
-    if ($scope.searchText != "")
+    var conditions = [];
+    if ($scope.searchText && $scope.searchText != "")
     {
-      conditions['OR'] = [];
-      conditions['OR'].push({'Customer.name like': '%' + $scope.searchText + '%'});
+      var searchConditions = {"OR": []};
+      searchConditions['OR'].push({'Customer.name like': '%' + $scope.searchText + '%'});
+      conditions.push(searchConditions);
     }
-    $scope.$broadcast('refresh-table', {'conditions': conditions});
-  }
+    $scope.$broadcast('refresh-table', {'conditions': conditions}, changePage, refreshData);
+  });
+
+
+  // Trigger data-table when ready
+  $scope.$on('data-table-ready', function(){
+    $scope.filterChanged();
+  });
 
 }]);

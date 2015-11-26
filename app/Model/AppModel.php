@@ -21,4 +21,11 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
+  // Check permisson
+  public function check_permission($user, $model, $action)
+  {
+    
+  }
+
 }

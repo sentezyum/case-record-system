@@ -4,7 +4,9 @@
 var CaseRecordSystem = angular.module('CaseRecordSystem', [
   'CaseRecordSystemService',
   'angularUtils.directives.dirPagination',
-  'ngSanitize'
+  'angularMoment',
+  'ngSanitize',
+  'ui.bootstrap'
 ]);
 
 moment.locale('tr');

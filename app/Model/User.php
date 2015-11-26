@@ -128,7 +128,7 @@ class User extends AppModel
     $user['User']['password'] = $newPassword;
     $this->set($user);
     if ($this->validates())
-      return $this->save(array('User' => array('id' => Hash::get($user, 'User.id'), 'password' => Security::hash($newPassword, 'md5'))));
+      return $this->save(array('User' => array('id' => Hash::get($user, 'User.id'), 'password' => $newPassword)));
     return false;
   }
 

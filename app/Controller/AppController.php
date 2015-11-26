@@ -1,6 +1,7 @@
 <?php
 
 App::uses('Controller', 'Controller');
+App::uses('AccessControl', 'Lib');
 
 class AppController extends Controller
 {
@@ -13,6 +14,12 @@ class AppController extends Controller
     // Check If Error Page
     if ($this->name == 'CakeError') return;
 
+    if ($this->CaseRecordSystem->userLogged())
+    {
+      $acl = new AccessControl();
+      if (!$acl->hasAccess($this->CaseRecordSystem->getLoggedUser(), "controller_" . $this->params->controller, $this->params->action))
+        throw new UnauthorizedException('Bu işlem için yetkiniz yok');
+    }
   }
 
   // Make paginator settings
@@ -33,7 +40,7 @@ class AppController extends Controller
           $settings[$value] = $this->request->data[$value];
       }
     }
-    
+
     $this->Paginator->settings = $settings;
   }
 }

@@ -46,7 +46,8 @@ CaseRecordSystemService.factory('CaseRecordSystemService', ['$resource',
         get_users: {method:'POST', params: {controller: "users", action: "index"}, isArray: false},
         get_customers: {method:'POST', params: {controller: "customers", action: "index"}, isArray: false},
         all_customer: {method:'POST', params: {controller: "customers", action: "all"}, isArray: true},
-        save_customer: {method:'POST', params: {controller: "customers", action: "add"}, isArray: false}
+        save_customer: {method:'POST', params: {controller: "customers", action: "add"}, isArray: false},
+        view_case: {method:'POST', params: {controller: "cases", action: "view"}, isArray: false}
       });
     }
 ]);

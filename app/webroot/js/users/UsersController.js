@@ -63,25 +63,37 @@ CaseRecordSystem.controller('UsersController', ['$scope', '$sce', function($scop
 
   $scope.filterChanged = function(command)
   {
-    if (!$scope.search) $scope.search = "";
     if (command == "clear")
     {
       $scope.search = "";
       $scope._isActive = undefined;
-      return $scope.filterChanged();
     }
+    $scope.$emit('filter-change');
+  };
+
+  // Catch Filter Changed
+  $scope.$on('filter-change', function(e, filter, changePage, refreshData)
+  {
     if ($scope.searchText === $scope.search && $scope._prevIsActive === $scope._isActive) return;
     $scope.searchText = $scope.search;
     $scope._prevIsActive = $scope._isActive;
-    var conditions = {};
-    if ($scope.searchText != "")
+    var conditions = [];
+    if ($scope.searchText && $scope.searchText != "")
     {
-      conditions['OR'] = [];
-      conditions['OR'].push({'User.mail like': '%' + $scope.searchText + '%'});
-      conditions['OR'].push({'Customer.name like': '%' + $scope.searchText + '%'});
+      var searchConditions = {"OR": []};
+      searchConditions['OR'].push({'User.mail like': '%' + $scope.searchText + '%'});
+      searchConditions['OR'].push({'Customer.name like': '%' + $scope.searchText + '%'});
+      conditions.push(searchConditions);
     }
-    if ($scope._isActive !== undefined) conditions['User.is_active'] = $scope._isActive;
-    $scope.$broadcast('refresh-table', {'conditions': conditions});
-  };
+    if ($scope._isActive !== undefined) conditions.push({'User.is_active': $scope._isActive});
+    $scope.$broadcast('refresh-table', {'conditions': conditions}, changePage, refreshData);
+  });
+
+
+  // Trigger data-table when ready
+  $scope.$on('data-table-ready', function(){
+    $scope.filterChanged();
+  });
+
 
 }]);

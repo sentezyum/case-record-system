@@ -12,6 +12,8 @@
     "angular-utils-pagination": "x",
     "moment": "2.x",
     "bootstrap3-dialog": "x",
-    "toastr": "x"
+    "toastr": "x",
+    "angular-bootstrap": "x",
+    "angular-moment": "x"
   }
 }

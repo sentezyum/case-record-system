@@ -1,0 +1,15 @@
+# Sistem Admin Full
+ALLOW GROUP system_admin *.*
+
+# Admin Full
+ALLOW GROUP admin *.*
+
+# Tüm kullanıcılar
+ALLOW GROUP * controller_cases.index
+ALLOW GROUP * controller_cases.view
+ALLOW GROUP * controller_users.login
+ALLOW GROUP * controller_users.change_password
+ALLOW GROUP * controller_users.logout
+
+# Varsayılan Yasaklama
+DENY GROUP * *.*

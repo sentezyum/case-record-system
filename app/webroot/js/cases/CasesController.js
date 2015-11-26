@@ -10,7 +10,7 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSys
       'title': 'Açıklama',
       'sort': 'CaseRecord.name',
       'getValue': function(data) {
-        return '<a href="' + webroot + 'cases/edit/' + data.CaseRecord.id + '">' + $scope.highlight(data.CaseRecord.name) + '</a>';
+        return '<bt-case-files bt-label="{{highlight(data.CaseRecord.name)}}" bt-case="data.CaseRecord"></bt-case-files>';
       }
     },{
       'title': 'Davalı',
@@ -19,6 +19,7 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSys
       'sort': 'CaseRecord.defendant_name',
       'getValue': function(data) {
         if (data.CaseRecord.defendant_id == null) return "Tanımlı değil";
+        if (!userIsAdmin) return $scope.highlight(data.CaseRecord.defendant_name);
         return '<a href="' + webroot + 'customers/edit/' + data.CaseRecord.defendant_id + '">' + $scope.highlight(data.CaseRecord.defendant_name) + '</a>';
       }
     },{
@@ -28,14 +29,15 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSys
       'sort': 'CaseRecord.claimant_name',
       'getValue': function(data) {
         if (data.CaseRecord.claimant_id == null) return "Tanımlı değil";
+        if (!userIsAdmin) return $scope.highlight(data.CaseRecord.claimant_name);
         return '<a href="' + webroot + 'customers/edit/' + data.CaseRecord.claimant_id + '">' + $scope.highlight(data.CaseRecord.claimant_name) + '</a>';
       }
     },{
       'title': 'Durum',
       'width': '5%',
       'getValue': function(data) {
-        if (data.CaseRecord.is_active) return '<span ng-show="c.CaseRecord.is_active" class="label label-success">Açık</span>';
-        return '<span ng-show="!c.CaseRecord.is_active" class="label label-danger">Kapalı</span>';
+        if (data.CaseRecord.is_active) return '<span class="label label-success">Açık</span>';
+        return '<span class="label label-danger">Kapalı</span>';
       }
     }
   ];
@@ -46,7 +48,7 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSys
   {
     if ($scope._isActive == state) return;
     $scope._isActive = state;
-    $scope.filterChanged();
+    $scope.$emit('filter-change');
   }
   $scope.isActive = function(state)
   {
@@ -72,26 +74,37 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSys
 
   $scope.filterChanged = function(command)
   {
-    if (!$scope.search) $scope.search = "";
     if (command == "clear")
     {
       $scope.search = "";
       $scope._isActive = undefined;
-      return $scope.filterChanged();
     }
+    $scope.$emit('filter-change');
+  };
+
+  // Catch Filter Changed
+  $scope.$on('filter-change', function(e, filter, changePage, refreshData)
+  {
     if ($scope.searchText === $scope.search && $scope._prevIsActive === $scope._isActive) return;
     $scope.searchText = $scope.search;
     $scope._prevIsActive = $scope._isActive;
-    var conditions = {};
-    if ($scope.searchText != "")
+    var conditions = [];
+    if ($scope.searchText && $scope.searchText != "")
     {
-      conditions['OR'] = [];
-      conditions['OR'].push({'CaseRecord.name like': '%' + $scope.searchText + '%'});
-      conditions['OR'].push({'CaseRecord.defendant_name like': '%' + $scope.searchText + '%'});
-      conditions['OR'].push({'CaseRecord.claimant_name like': '%' + $scope.searchText + '%'});
+      var searchConditions = {"OR": []};
+      searchConditions['OR'].push({'CaseRecord.name like': '%' + $scope.searchText + '%'});
+      searchConditions['OR'].push({'CaseRecord.defendant_name like': '%' + $scope.searchText + '%'});
+      searchConditions['OR'].push({'CaseRecord.claimant_name like': '%' + $scope.searchText + '%'});
+      conditions.push(searchConditions);
     }
-    if ($scope._isActive !== undefined) conditions['CaseRecord.is_active'] = $scope._isActive;
-    $scope.$broadcast('refresh-table', {'conditions': conditions});
-  };
+    if ($scope._isActive !== undefined) conditions.push({'CaseRecord.is_active': $scope._isActive});
+    $scope.$broadcast('refresh-table', {'conditions': conditions}, changePage, refreshData);
+  });
+
+
+  // Trigger data-table when ready
+  $scope.$on('data-table-ready', function(){
+    $scope.filterChanged();
+  });
 
 }]);

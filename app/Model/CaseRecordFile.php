@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AppModel', 'Model');
+App::uses('File', 'Utility');
 
 class CaseRecordFile extends AppModel
 {
@@ -65,5 +66,16 @@ class CaseRecordFile extends AppModel
     $this->actsAs['Uploader.FileValidation']['file_name']['filesize']['value'] = Configure::read('Rule.MaxFileSize') * 1024 * 1024;
     $this->actsAs['Uploader.FileValidation']['file_name']['filesize']['message'] = 'Dosya çok büyük; maximum boyut ' . Configure::read('Rule.MaxFileSize') . 'MB';
     parent::__construct($id, $table, $ds);
+  }
+
+  public function beforeDelete($cascade = true) {
+      $caseId = Hash::get($this->findById($this->id), "CaseRecordFile.case_record_id");
+      if (empty($this->CaseRecord->find('all', array('conditions' => array('CaseRecord.id' => $caseId))))) return false;
+      return true;
+  }
+
+  public function afterDelete() {
+    $file = new File($this->data['CaseRecordFile']['file_name']);
+    $file->delete();
   }
 }
