@@ -110,3 +110,12 @@ table div.table-header i.fa-sort-desc
 .highlight {
   font-weight: bold;
 }
+
+.elipsis-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.word-break-text {
+  word-break: break-word;
+}

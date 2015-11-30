@@ -8,7 +8,7 @@
       </thead>
       <tbody>
         <tr dir-paginate="c in data | itemsPerPage: header.limit" total-items="header.count" current-page="header.page" pagination-id="dataTable">
-          <td ng-repeat="dataTableField in btDataTableFields track by $index" class="{{::dataTableField.class}}" bt-data="c" bt-value-getter="dataTableField.getValue" bt-data-table-field></td>
+          <td ng-repeat="dataTableField in btDataTableFields track by $index" class="{{::dataTableField.class}}" style="{{::dataTableField.style}}" bt-data="c" bt-value-getter="dataTableField.getValue" bt-data-table-field></td>
         </tr>
         <tr ng-if="isLoading() && data.length == 0">
           <td align="center" colspan="{{::btDataTableFields.length}}"><i class="fa fa-circle-o-notch fa-spin"></i> Yükleniyor...</td>

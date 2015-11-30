@@ -9,6 +9,8 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSys
     {
       'title': 'Açıklama',
       'sort': 'CaseRecord.name',
+      'width': '55%',
+      'style': 'max-width: 470px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;',
       'getValue': function(data) {
         return '<bt-case-files bt-label="{{highlight(data.CaseRecord.name)}}" bt-case="data.CaseRecord"></bt-case-files>';
       }

@@ -10,7 +10,7 @@
       <tr>
         <td><?php echo $this->Time->format('d.m.Y', $caseRecordFile['CaseRecordFile']['date']); ?></td>
         <td><a href="<?php echo $this->webroot . $caseRecordFile['CaseRecordFile']['file_name']; ?>" target="_new"><?php echo $caseRecordFile['CaseRecordFile']['name']; ?></a></td>
-        <td><?php echo $caseRecordFile['CaseRecordFile']['description']; ?></td>
+        <td class="elipsis-text word-break-text"><?php echo $caseRecordFile['CaseRecordFile']['description']; ?></td>
         <td><?php echo $this->Html->link('Kaldır', array('action' => 'delete_file', $caseRecordFile['CaseRecordFile']['id'])); ?></td>
       </tr>
     <?php } ?>
