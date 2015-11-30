@@ -104,9 +104,8 @@ CaseRecordSystem.directive('btCaseFiles', function (){
       // Open modal
       $scope.open = function()
       {
-        $scope._bootstrap(function(){
-          $scope.modalElement.modal('show');
-        });
+        $scope._bootstrap();
+        $scope.modalElement.modal('show');
       };
 
       // Close modal

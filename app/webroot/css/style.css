@@ -113,9 +113,11 @@ table div.table-header i.fa-sort-desc
 
 .elipsis-text {
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
 .word-break-text {
+  white-space:normal !important;
   word-break: break-word;
 }
