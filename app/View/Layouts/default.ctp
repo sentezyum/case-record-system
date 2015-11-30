@@ -9,7 +9,7 @@
 	<?php echo $this->element('settings'); ?>
 	<?php echo $this->element('components'); ?>
 
-	<?php echo $this->Html->css('style'); ?>
+	<?php echo $this->Html->css('style.css?v=201512010139'); ?>
 </head>
 <body class="default" ng-controller="CaseRecordSystemController">
 	<?php echo $this->element('menu'); ?>
