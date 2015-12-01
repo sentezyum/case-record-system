@@ -25,8 +25,8 @@ CaseRecordSystem.controller('UsersController', ['$scope', '$sce', function($scop
       'title': 'Durum',
       'width': '5%',
       'getValue': function(data) {
-        if (data.User.is_active) return '<span ng-show="c.User.is_active" class="label label-success">Aktif</span>';
-        return '<span ng-show="!c.User.is_active" class="label label-danger">Kapalı</span>';
+        if (data.User.is_active) return '<span class="label label-success">Aktif</span>';
+        return '<span class="label label-danger">Kapalı</span>';
       }
     }
   ];
