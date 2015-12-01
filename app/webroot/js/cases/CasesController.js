@@ -21,7 +21,7 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSys
       'sort': 'CaseRecord.defendant_name',
       'getValue': function(data) {
         if (data.CaseRecord.defendant_id == null) return "Tanımlı değil";
-        if (!userIsAdmin) return $scope.highlight(data.CaseRecord.defendant_name);
+        if (!userIsAdmin) return $scope.highlight(data.CaseRecord.defendant_name).toString();
         return '<a href="' + webroot + 'customers/edit/' + data.CaseRecord.defendant_id + '">' + $scope.highlight(data.CaseRecord.defendant_name) + '</a>';
       }
     },{
@@ -31,7 +31,7 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSys
       'sort': 'CaseRecord.claimant_name',
       'getValue': function(data) {
         if (data.CaseRecord.claimant_id == null) return "Tanımlı değil";
-        if (!userIsAdmin) return $scope.highlight(data.CaseRecord.claimant_name);
+        if (!userIsAdmin) return $scope.highlight(data.CaseRecord.claimant_name).toString();
         return '<a href="' + webroot + 'customers/edit/' + data.CaseRecord.claimant_id + '">' + $scope.highlight(data.CaseRecord.claimant_name) + '</a>';
       }
     },{
