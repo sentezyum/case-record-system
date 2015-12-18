@@ -22,10 +22,6 @@ class CaseRecord extends AppModel
         'rule' => 'notBlank',
         'message' => 'Boş bırakılamaz.',
         'required' => true
-      ),
-      'numeric' => array(
-        'rule' => 'numeric',
-        'message' => 'Yanlızca rakam giriniz.'
       )
     ),
     'claimant_name' => array(

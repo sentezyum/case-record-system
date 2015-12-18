@@ -14,6 +14,7 @@ class CaseRecordFile extends AppModel
 				'overwrite' => false,
 				'finalPath' => 'upload/',
 				'nameCallback' => 'formatFileName',
+        'allowEmpty' => true,
         'metaColumns' => array(
           'ext' => 'extension',
           'type' => 'mime_type',
@@ -31,12 +32,7 @@ class CaseRecordFile extends AppModel
           'value' => '10MB',
           'message' => 'Dosya çok büyük; maximum boyut %s'
         ),
-        'required' => array(
-          'value' => true,
-          'on' => 'create',
-          'message' => 'Dosya gerekli',
-          'required' => true
-        )
+        'required' => false
 			)
 		)
 	);

@@ -7,9 +7,17 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSys
   // Datatable fields
   $scope.tableFields = [
     {
-      'title': 'Açıklama',
+      'title': 'Kart no',
+      'sort': 'CaseRecord.no',
+      'width': '20%',
+      'getValue': function(data) {
+        return $scope.highlight(data.CaseRecord.no).toString();
+      }
+    },{
+      'title': 'Dava konusu',
+      'class': 'hidden-xs',
       'sort': 'CaseRecord.name',
-      'width': '55%',
+      'width': '30%',
       'style': 'max-width: 470px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;',
       'getValue': function(data) {
         return '<bt-case-files bt-label="{{highlight(data.CaseRecord.name)}}" bt-case="data.CaseRecord"></bt-case-files>';
@@ -97,6 +105,7 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSys
       searchConditions['OR'].push({'CaseRecord.name like': '%' + $scope.searchText + '%'});
       searchConditions['OR'].push({'CaseRecord.defendant_name like': '%' + $scope.searchText + '%'});
       searchConditions['OR'].push({'CaseRecord.claimant_name like': '%' + $scope.searchText + '%'});
+      searchConditions['OR'].push({'CaseRecord.no like': '%' + $scope.searchText + '%'});
       conditions.push(searchConditions);
     }
     if ($scope._isActive !== undefined) conditions.push({'CaseRecord.is_active': $scope._isActive});

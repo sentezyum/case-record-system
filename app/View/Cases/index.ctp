@@ -6,7 +6,6 @@
     <div class="panel-heading clearfix">
       <h4 class="panel-title pull-left hidden-xs" style="padding-top: 7.5px;">Davalar</h4>
       <div class="input-group col-sm-7 col-xs-12 pull-right">
-        <bt-case-files>asdasdasd</bt-case-files>
         <span class="input-group-btn">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{getActiveValue()}} <span class="caret"></span></button>
           <ul class="dropdown-menu">
@@ -15,7 +14,7 @@
             <li ng-class="{active: isActive(false)}"><a href ng-click="setActive(false)">Kapalı</a></li>
           </ul>
         </span>
-        <input ng-enter="filterChanged()" type="text" ng-model="search" class="form-control" placeholder="Açıklama, Davalı, Davacı"/>
+        <input ng-enter="filterChanged()" type="text" ng-model="search" class="form-control" placeholder="Kart no, Açıklama, Davalı, Davacı"/>
         <span class="input-group-btn">
           <button class="btn btn-info" ng-click="filterChanged('clear')" type="button"><span class="glyphicon glyphicon-remove"></span></button>
           <button class="btn btn-primary" ng-click="filterChanged()" type="button"><span class="glyphicon glyphicon-search"></span></button>

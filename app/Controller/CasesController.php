@@ -16,10 +16,10 @@ class CasesController extends AppController
     {
       $this->autoRender = false;
       $this->PaginatorSettings(array(
-        'fields' => array('CaseRecord.id', 'CaseRecord.name', 'CaseRecord.defendant_name', 'CaseRecord.defendant_id', 'CaseRecord.claimant_name', 'CaseRecord.claimant_id', 'CaseRecord.is_active'),
+        'fields' => array('CaseRecord.id', 'CaseRecord.name', 'CaseRecord.no', 'CaseRecord.defendant_name', 'CaseRecord.defendant_id', 'CaseRecord.claimant_name', 'CaseRecord.claimant_id', 'CaseRecord.is_active'),
         'limit' => 25,
         'order' => array(
-          'CaseRecord.name' => 'asc'
+          'CaseRecord.created' => 'desc'
         )
       ));
 

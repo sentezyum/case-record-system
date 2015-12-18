@@ -15,17 +15,7 @@
 
   <div class="col-xs-12">
     <?php echo $this->Form->create("CaseRecord", array('inputDefaults' => array('label' => false, 'div' => false, 'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-block'))))); ?>
-      <div class="row">
-        <div class="col-sm-3">
-          <label>Tarih :</label>
-          <div class="input-group" style="margin-bottom:15px;">
-            <?php echo $this->Form->input('CaseRecord.date', array('type' => 'text', 'readonly' => 'readonly', 'label' => false, 'class' => 'form-control', 'uib-datepicker-popup' => 'yyyy-MM-dd', 'is-open' => 'dateState', 'ng-model' => 'caseDate' )); ?>
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default" ng-click="dateState = true"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-          </div>
-        </div>
-      </div>
+      <?php echo $this->Form->input('CaseRecord.is_active', array('type' => 'hidden', 'value' => '1')); ?>
       <div class="row">
         <div class="col-sm-4">
           <div class="form-group">
@@ -34,9 +24,16 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <?php echo $this->Form->input('CaseRecord.basis_number', array('label' => 'Esas No: ', 'class' => 'form-control')); ?>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
-            <?php echo $this->Form->input('CaseRecord.name', array('label' => 'Açıklama: ', 'class' => 'form-control')); ?>
+            <?php echo $this->Form->input('CaseRecord.name', array('label' => 'Dava konusu: ', 'class' => 'form-control')); ?>
           </div>
         </div>
       </div>
@@ -64,23 +61,6 @@
         <div class="col-sm-4">
           <div class="form-group">
             <?php echo $this->Form->input('CaseRecord.unit', array('label' => 'Birim: ', 'class' => 'form-control')); ?>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group">
-            <?php echo $this->Form->input('CaseRecord.basis_number', array('label' => 'Esas No: ', 'class' => 'form-control')); ?>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group">
-            <label>
-              <?php echo $this->Form->input('CaseRecord.is_active'); ?>
-              Dosya Açık
-            </label>
           </div>
         </div>
       </div>
