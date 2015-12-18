@@ -1,6 +1,6 @@
-<?php $this->Html->script('directive/bt_case_files/BtCaseFiles.js?v=201512010143', array('inline' => false)); ?>
-<?php $this->Html->script('directive/bt_data_table/BtDataTable.js?v=201512010143', array('inline' => false)); ?>
-<?php $this->Html->script('cases/CasesController.js?v=201512010143', array('inline' => false)); ?>
+<?php $this->Html->script('directive/bt_case_files/BtCaseFiles.js?v=201512010144', array('inline' => false)); ?>
+<?php $this->Html->script('directive/bt_data_table/BtDataTable.js?v=201512010144', array('inline' => false)); ?>
+<?php $this->Html->script('cases/CasesController.js?v=201512010144', array('inline' => false)); ?>
 <div class="container" ng-controller="CasesController">
   <div class="panel panel-default">
     <div class="panel-heading clearfix">
