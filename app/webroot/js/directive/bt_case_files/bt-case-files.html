@@ -86,7 +86,7 @@
                     <td>{{file.date | amDateFormat:'DD.MM.YYYY'}}</td>
                     <td ng-bind-html="highlight(file.name)">{{file.name}}</td>
                     <td class="hidden-xs elipsis-text" ng-class="{'word-break-text': file.show_all === true}" style="max-width: 331px;"><a href ng-click="file.show_all = file.show_all ? false : true;">{{file.description}}</a></td>
-                    <td><a ng-href="{{getFileLink(file)}}" target="_new">{{::file.extension}} ({{::file.mime_type}}) dddd</a></td>
+                    <td><a ng-href="{{getFileLink(file)}}" target="_new">{{::file.extension}}/Görüntüle</a></td>
                   </tr>
                 </tbody>
               </table>
