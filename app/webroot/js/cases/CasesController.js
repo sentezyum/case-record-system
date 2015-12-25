@@ -9,19 +9,20 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSys
     {
       'title': 'Kart no',
       'sort': 'CaseRecord.no',
-      'width': '20%',
+      'width': '10%',
       'getValue': function(data) {
         return $scope.highlight(data.CaseRecord.no).toString();
       }
-    },{
-      'title': 'Dava konusu',
-      'class': 'hidden-xs',
-      'sort': 'CaseRecord.name',
-      'width': '30%',
-      'style': 'max-width: 470px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;',
-      'getValue': function(data) {
-        return '<bt-case-files bt-label="{{highlight(data.CaseRecord.name)}}" bt-case="data.CaseRecord"></bt-case-files>';
-      }
+    }, {
+        'title': 'Davacı',
+        'class': 'hidden-xs',
+        'width': '20%',
+        'sort': 'CaseRecord.claimant_name',
+        'getValue': function (data) {
+            if (data.CaseRecord.claimant_id == null) return "Tanımlı değil";
+            if (!userIsAdmin) return $scope.highlight(data.CaseRecord.claimant_name).toString();
+            return '<a href="' + webroot + 'customers/edit/' + data.CaseRecord.claimant_id + '">' + $scope.highlight(data.CaseRecord.claimant_name) + '</a>';
+        }
     },{
       'title': 'Davalı',
       'class': 'hidden-xs',
@@ -32,16 +33,15 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSys
         if (!userIsAdmin) return $scope.highlight(data.CaseRecord.defendant_name).toString();
         return '<a href="' + webroot + 'customers/edit/' + data.CaseRecord.defendant_id + '">' + $scope.highlight(data.CaseRecord.defendant_name) + '</a>';
       }
-    },{
-      'title': 'Davacı',
-      'class': 'hidden-xs',
-      'width': '20%',
-      'sort': 'CaseRecord.claimant_name',
-      'getValue': function(data) {
-        if (data.CaseRecord.claimant_id == null) return "Tanımlı değil";
-        if (!userIsAdmin) return $scope.highlight(data.CaseRecord.claimant_name).toString();
-        return '<a href="' + webroot + 'customers/edit/' + data.CaseRecord.claimant_id + '">' + $scope.highlight(data.CaseRecord.claimant_name) + '</a>';
-      }
+    }, {
+        'title': 'Dava konusu',
+        'class': 'hidden-xs',
+        'sort': 'CaseRecord.name',
+        'width': '40%',
+        'style': 'max-width: 470px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;',
+        'getValue': function (data) {
+            return '<bt-case-files bt-label="{{highlight(data.CaseRecord.name)}}" bt-case="data.CaseRecord"></bt-case-files>';
+        }
     },{
       'title': 'Durum',
       'width': '5%',
