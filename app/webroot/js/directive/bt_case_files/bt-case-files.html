@@ -14,7 +14,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist" ng-show="caseRecord.CaseRecordFile.length > 0">
           <li role="presentation" ng-class="{active: tab == 'general'}"><a href ng-click="tab='general'">Genel</a></li>
-          <li role="presentation" ng-class="{active: tab == 'files'}"><a href ng-click="tab='files'">Dosyalar <span class="badge">{{caseRecord.CaseRecordFile.length}}</span></a></li>
+          <li role="presentation" ng-class="{active: tab == 'files'}"><a href ng-click="tab='files'">Evrak / Bilgi<span class="badge">{{caseRecord.CaseRecordFile.length}}</span></a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -78,7 +78,7 @@
                     <th style="width:10%">Tarih</th>
                     <th style="width:30%">Evrak / Bilgi Adı</th>
                     <th style="width:40%;" ng-class="hidden-xs">Açıklama</th>
-                    <th style="width:20%">Dosya</th>
+                    <th style="width:20%">Evrak</th>
                   </tr>
                 </thead>
                 <tbody>
