@@ -11,7 +11,7 @@ CaseRecordSystem.controller('CasesController', ['$scope', '$sce', 'CaseRecordSys
       'sort': 'CaseRecord.no',
       'width': '10%',
       'getValue': function(data) {
-        return $scope.highlight(data.CaseRecord.no).toString();
+        return '<bt-case-files bt-label="{{highlight(data.CaseRecord.no.toString())}}" bt-case="data.CaseRecord"></bt-case-files>';
       }
     }, {
         'title': 'Davacı',
