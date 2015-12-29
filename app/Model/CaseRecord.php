@@ -6,7 +6,12 @@ class CaseRecord extends AppModel
 {
 
   // Has many file
-  public $hasMany = array('CaseRecordFile');
+  public $hasMany = array(
+    'CaseRecordFile' => array(
+      'class_name' => 'CaseRecordFile',
+      'order' => 'colour_id DESC'
+    )
+  );
 
   //Validate
   public $validate = array(
