@@ -9,7 +9,7 @@ class CaseRecord extends AppModel
   public $hasMany = array(
     'CaseRecordFile' => array(
       'class_name' => 'CaseRecordFile',
-      'order' => 'colour_id DESC'
+      'order' => 'created DESC'
     )
   );
 
